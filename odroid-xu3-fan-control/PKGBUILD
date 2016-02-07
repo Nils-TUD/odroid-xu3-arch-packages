@@ -1,0 +1,17 @@
+pkgname=odroid-xu3-fan-control
+pkgver=1.0
+pkgrel=1
+pkgdesc='Controls the fan on the odroid XU3'
+arch=('armv7h')
+license=('GPL')
+provides=('odroid-xu3-fan-control')
+_commit=e38107db35fdf4a58792d9fc2a900d6a1fbd7cb9
+source=("git+https://github.com/Nils-TUD/odroid-xu3-fan-control.git")
+md5sums=('SKIP')
+
+package() {
+  cd odroid-xu3-fan-control
+  
+  install -dm755 "$pkgdir"/etc/systemd/system
+  cp odroid-xu3-fan-control.* "$pkgdir"/etc/systemd/system
+}
