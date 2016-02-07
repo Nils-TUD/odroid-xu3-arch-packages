@@ -1,0 +1,12 @@
+pkgname=odroid-xu3-no-heartbeat
+pkgver=1.0
+pkgrel=1
+pkgdesc='Disables the heartbeat LED on the odroid XU3'
+arch=('armv7h')
+license=('GPL')
+provides=('odroid-xu3-no-heartbeat')
+
+package() {
+  install -dm755 "$pkgdir"/etc/tmpfiles.d
+  echo "w /sys/class/leds/blue:heartbeart/trigger - - - - none" > "$pkgdir"/etc/tmpfiles.d/heartbeat.conf
+}
