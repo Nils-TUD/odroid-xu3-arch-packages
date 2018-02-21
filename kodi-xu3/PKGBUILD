@@ -18,7 +18,7 @@ pkgbase=kodi-xu3
 pkgname=('kodi-xu3' 'kodi-xu3-eventclients')
 _commit=1aa79fd7894a2880a5f12a5c95f670b9987ebb1c
 pkgver=17.3
-pkgrel=1
+pkgrel=3
 arch=('armv7h')
 url="http://kodi.tv"
 license=('GPL2')
@@ -64,10 +64,11 @@ build() {
     --disable-static --enable-shared \
     --disable-rsxs \
     --disable-libcec \
-    --enable-codec=mfc
+    --enable-codec=mfc \
+    --with-ffmpeg=shared
 
   # Now (finally) build
-  make
+  MAKEFLAGS=-j8 make
 }
 
 package_kodi-xu3() {
