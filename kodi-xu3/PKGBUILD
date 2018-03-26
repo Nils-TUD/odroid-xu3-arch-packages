@@ -18,7 +18,7 @@ pkgbase=kodi-xu3
 pkgname=('kodi-xu3' 'kodi-xu3-eventclients')
 _commit=1aa79fd7894a2880a5f12a5c95f670b9987ebb1c
 pkgver=17.3
-pkgrel=3
+pkgrel=4
 arch=('armv7h')
 url="http://kodi.tv"
 license=('GPL2')
@@ -33,13 +33,22 @@ makedepends=(
   'mesa' 'libcec'
 )
 
-source=("https://github.com/Owersun/xbmc/archive/${_commit}.tar.gz")
-sha256sums=('1c7875d51f2855ac2e85856a5b82734183d7852042b8bdddbf1f1adb66aa5361')
+source=(
+	"https://github.com/Owersun/xbmc/archive/${_commit}.tar.gz"
+	"xbmc-ftpparse.patch"
+)
+sha256sums=(
+	'1c7875d51f2855ac2e85856a5b82734183d7852042b8bdddbf1f1adb66aa5361'
+	'c0e6c737794626a5490f7c77ef259b9f7549e9a80b6d8626c2110fb337c349f9'
+)
+
 prepare() {
   cd xbmc-${_commit}
 
   find -type f -name *.py -exec sed 's|^#!.*python$|#!/usr/bin/python2|' -i "{}" +
   sed 's|^#!.*python$|#!/usr/bin/python2|' -i tools/depends/native/rpl-native/rpl
+
+  patch -p2 < ../../xbmc-ftpparse.patch
 }
 
 build() {
@@ -64,8 +73,7 @@ build() {
     --disable-static --enable-shared \
     --disable-rsxs \
     --disable-libcec \
-    --enable-codec=mfc \
-    --with-ffmpeg=shared
+    --enable-codec=mfc
 
   # Now (finally) build
   MAKEFLAGS=-j8 make
