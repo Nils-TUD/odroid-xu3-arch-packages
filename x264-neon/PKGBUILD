@@ -11,7 +11,7 @@
 
 pkgname=('x264-neon' 'libx264-neon' 'libx264-10bit-neon')
 _pkgname=x264
-pkgver=152.20171224
+pkgver=155.20180806
 pkgrel=1
 epoch=1
 arch=('i686' 'x86_64' 'armv7h')
@@ -19,7 +19,7 @@ url='http://www.videolan.org/developers/x264.html'
 license=('GPL')
 depends=('glibc')
 makedepends=('yasm' 'git' 'ffmpeg' 'l-smash')
-_commit=e9a5903edf8ca59ef20e6f4894c196f135af735e
+_commit=0a84d986e7020f8344f00752e3600b9769cc1e85
 source=("git+https://git.videolan.org/git/x264.git#commit=${_commit}")
 md5sums=('SKIP')
 
