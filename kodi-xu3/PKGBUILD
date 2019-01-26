@@ -18,14 +18,14 @@ pkgbase=kodi-xu3
 pkgname=('kodi-xu3' 'kodi-xu3-eventclients')
 _commit=1aa79fd7894a2880a5f12a5c95f670b9987ebb1c
 pkgver=17.3
-pkgrel=4
+pkgrel=5
 arch=('armv7h')
 url="http://kodi.tv"
 license=('GPL2')
 makedepends=(
   'afpfs-ng' 'bluez-libs' 'boost' 'cmake' 'curl' 'cwiid' 'doxygen' 'git' 'glew'
   'gperf' 'hicolor-icon-theme' 'jasper' 'java-runtime' 'libaacs' 'libass'
-  'libbluray' 'libcdio' 'libmariadbclient' 'libmicrohttpd'
+  'libbluray' 'libcdio' 'mariadb-libs' 'libmicrohttpd'
   'libmodplug' 'libmpeg2' 'libnfs' 'libplist' 'libpulse' 'libssh' 'libva'
   'libxrandr' 'libxslt' 'lzo' 'nasm' 'nss-mdns' 'python2-pillow'
   'python2-pybluez' 'python2-simplejson' 'rtmpdump' 'sdl2' 'sdl_image'
@@ -76,7 +76,7 @@ build() {
     --enable-codec=mfc
 
   # Now (finally) build
-  MAKEFLAGS=-j8 make
+  make
 }
 
 package_kodi-xu3() {
@@ -90,7 +90,7 @@ package_kodi-xu3() {
     'python2-pillow' 'python2-pybluez' 'python2-simplejson'
     'mesa-demos' 'xorg-xdpyinfo'
     'bluez-libs' 'fribidi' 'glew' 'hicolor-icon-theme' 'libcdio'
-    'libjpeg-turbo' 'libmariadbclient' 'libmicrohttpd' 'libpulse' 'libssh'
+    'libjpeg-turbo' 'mariadb-libs' 'libmicrohttpd' 'libpulse' 'libssh'
     'libva' 'libxrandr' 'libxslt' 'lzo' 'sdl2' 'smbclient' 'taglib' 'tinyxml'
     'yajl' 'mesa'
   )
